@@ -1,8 +1,8 @@
 import React from "react";
-// import "./EmptyTodos.css";
+import "./EmptyTodos.css";
 
 function EmptyTodos() {
-  return <p>Crea tu primer todo</p>;
+  return <p>No tasks to show</p>;
 }
 
 export { EmptyTodos };

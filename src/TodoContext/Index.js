@@ -1,7 +1,7 @@
-import React from "react";
+import React, { createContext, useState, useCallback } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-const TodoContext = React.createContext();
+const TodoContext = createContext();
 
 function TodoProvider({ children }) {
   const {
@@ -10,37 +10,40 @@ function TodoProvider({ children }) {
     loading,
     error,
   } = useLocalStorage("TODOS_V1", []);
-  const [searchValue, setSearchValue] = React.useState("");
-  const [openModal, setOpenModal] = React.useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
-  const completedTodos = todos.filter((todo) => !!todo.completed).length;
+  const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
 
-  const searchedTodos = todos.filter((todo) => {
-    const todoText = todo.text.toLocaleLowerCase();
-    const searchText = searchValue.toLocaleLowerCase();
-    return todoText.includes(searchText);
-  });
+  const searchedTodos = todos.filter((todo) =>
+    todo.text.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
-  const completeTodo = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
-    newTodos[todoIndex].completed = true;
-    saveTodos(newTodos);
-  };
+  const completeTodo = useCallback(
+    (text) => {
+      const newTodos = todos.map((todo) =>
+        todo.text === text ? { ...todo, completed: !todo.completed } : todo
+      );
+      saveTodos(newTodos);
+    },
+    [todos, saveTodos]
+  );
 
-  const deleteTodo = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
-    newTodos.splice(todoIndex, 1);
-    saveTodos(newTodos);
-  };
+  const deleteTodo = useCallback(
+    (text) => {
+      const newTodos = todos.filter((todo) => todo.text !== text);
+      saveTodos(newTodos);
+    },
+    [todos, saveTodos]
+  );
 
-  const addTodo = (text) => {
-    const newTodos = [...todos];
-    newTodos.push({ text, completed: false });
-    saveTodos(newTodos);
-  };
+  const addTodo = useCallback(
+    (text) => {
+      saveTodos([...todos, { text, completed: false }]);
+    },
+    [todos, saveTodos]
+  );
 
   return (
     <TodoContext.Provider

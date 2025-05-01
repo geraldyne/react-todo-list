@@ -3,10 +3,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.ModalContainer {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  color: black;
+  animation: slideIn 0.4s ease forwards;
+}
+/* Animación para el fondo */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animación para el contenedor (sube y aparece) */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

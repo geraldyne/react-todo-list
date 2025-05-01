@@ -8,7 +8,8 @@ function TodoForm() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    addTodo(newTodoValue);
+    if (newTodoValue.trim().length === 0) return;
+    addTodo(newTodoValue.trim());
     setOpenModal(false);
   };
 
@@ -23,9 +24,11 @@ function TodoForm() {
     <form onSubmit={onSubmit}>
       <label>Escribe tu nuevo TODO</label>
       <textarea
-        placeholder="Cortar cebolla para el almuerzo"
+        placeholder="Ex: Learn react.js"
         value={newTodoValue}
         onChange={onChange}
+        autoFocus
+        maxLength={200}
       />
       <div className="TodoForm-buttonContainer">
         <button

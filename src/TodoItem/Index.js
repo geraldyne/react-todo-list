@@ -1,13 +1,24 @@
-import { CompleteIcon } from "../TodoIcon/CompleteIcon.js";
-import { DeleteIcon } from "../TodoIcon/DeleteIcon.js";
 import "./TodoItem.css";
+import { DeleteIcon } from "../TodoIcon/DeleteIcon";
 
-function TodoItem(props) {
+function TodoItem({ text, completed, onComplete, onDelete }) {
   return (
-    <li>
-      <CompleteIcon completed={props.completed} onComplete={props.onComplete} />
-      <p className={`${props.completed && "task-completed"}`}>{props.text}</p>
-      <DeleteIcon onDelete={props.onDelete} />
+    <li className="todo-item">
+      <div className="todo-item-left">
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={onComplete}
+          className="todo-item-checkbox"
+        />
+        <p
+          className={completed ? "todo-item-text completed" : "todo-item-text"}
+        >
+          {text}
+        </p>
+      </div>
+
+      <DeleteIcon className="todo-delete-icon" onDelete={onDelete} />
     </li>
   );
 }

@@ -8,7 +8,7 @@ function CreateTodoButton({ setOpenModal }) {
         setOpenModal((state) => !state);
       }}
     >
-      +
+      + Add Todo
     </button>
   );
 }

@@ -1,9 +1,8 @@
 import React from "react";
-import { CreateTodoButton } from "../CreateTodoButton/Index";
 import { TodoCounter } from "../TodoCounter/Index";
+import { TodoHeader } from "../TodoHeader/index.js";
 import { TodoItem } from "../TodoItem/Index";
 import { TodoList } from "../TodoList/Index";
-import { TodoSearch } from "../TodoSearch/Index";
 import { TodosLoading } from "../TodosLoading/Index";
 import { TodosError } from "../TodosError/Index.js";
 import { EmptyTodos } from "../EmptyTodos/Index";
@@ -22,9 +21,10 @@ function AppUI() {
     setOpenModal,
   } = React.useContext(TodoContext);
   return (
-    <>
+    <div className="AppContainer">
       <TodoCounter />
-      <TodoSearch />
+
+      <TodoHeader setOpenModal={setOpenModal} />
 
       <TodoList>
         {loading && (
@@ -48,14 +48,12 @@ function AppUI() {
         ))}
       </TodoList>
 
-      <CreateTodoButton setOpenModal={setOpenModal} />
-
       {openModal && (
         <Modal>
           <TodoForm />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

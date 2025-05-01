@@ -1,18 +1,19 @@
 import React from "react";
+import { ReactComponent as SearchIcon } from "./search.svg";
 import { TodoContext } from "../TodoContext/Index";
 import "./TodoSearch.css";
 
 function TodoSearch() {
   const { searchValue, setSearchValue } = React.useContext(TodoContext);
   return (
-    <div>
+    <div className="todo-search-container">
+      <SearchIcon className="todo-search-icon" />
       <input
-        placeholder="Cortar cebolla"
+        className="todo-search-input"
+        placeholder="Buscar tarea"
         type="text"
         value={searchValue}
-        onChange={(event) => {
-          setSearchValue(event.target.value);
-        }}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
     </div>
   );

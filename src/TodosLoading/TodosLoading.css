@@ -1,59 +1,46 @@
 .LoadingTodo-container {
-  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 24px;
-  box-shadow: 0px 5px 50px 0px rgba(32, 35, 41, 0.15);
-  border-radius: 10px;
-  padding: 12px 0;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 0px;
+  background: none;
 }
-.LoadingTodo-text {
-  position: relative;
-  margin: 24px 0 24px 24px;
-  width: calc(100% - 120px);
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 400;
-}
-.LoadingTodo-completeIcon,
-.LoadingTodo-deleteIcon {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-  height: 48px;
-  width: 48px;
-}
-.LoadingTodo-completeIcon {
-  position: relative;
-  left: 12px;
-}
-.LoadingTodo-deleteIcon {
-  position: relative;
-  top: -42px;
-  right: -14px;
-}
-.LoadingTodo-container,
-.LoadingTodo-completeIcon,
-.LoadingTodo-deleteIcon {
-  background: linear-gradient(
-    90deg,
-    rgba(250, 250, 250, 1),
-    rgb(200, 199, 199)
-  );
-  background-size: 400% 400%;
-  animation: loadingAnimation 3s ease-in-out infinite;
-}
+
 @keyframes loadingAnimation {
   0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    background-position: -200px 0;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: calc(200px + 100%) 0;
   }
+}
+
+.LoadingTodo-completeIcon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 400% 100%;
+  animation: loadingAnimation 1.2s ease-in-out infinite;
+}
+
+.LoadingTodo-text {
+  flex: 1;
+  height: 16px;
+  margin: 0 1rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 400% 100%;
+  animation: loadingAnimation 1.2s ease-in-out infinite;
+}
+
+.LoadingTodo-deleteIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 400% 100%;
+  animation: loadingAnimation 1.2s ease-in-out infinite;
 }
