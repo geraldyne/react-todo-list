@@ -31,7 +31,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://geraldyne.github.io/react-todo-list",
+  "homepage": ".",
   "devDependencies": {
     "gh-pages": "^6.1.1"
   }
